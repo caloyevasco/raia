@@ -34,7 +34,8 @@ class MarketBase(object):
 		else:
 			return None
 
-
+	def get_all_items(self):
+		return self.SqliteDatabaseTool.exec_fetchall(f"SELECT * FROM {self.database_dataset['table_name']}")
 
 	def get_item_by_id(self, item_id_arg):
 		item = self.SqliteDatabaseTool.exec_fetchone(f"SELECT * FROM {self.database_dataset['table_name']} WHERE {self.item_dataset['item_id']}=={item_id_arg} ")
@@ -60,3 +61,6 @@ class MarketDatabaseTool(MarketBase):
 	def create_table(self, command_format):
 		self.SqliteDatabaseTool.exec(command_format)
 		return
+
+	def list_items(self):
+		return self.get_all_items()
