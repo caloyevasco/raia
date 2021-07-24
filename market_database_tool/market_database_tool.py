@@ -79,5 +79,5 @@ class MarketDatabaseTool(MarketBase):
 		if self.memory_cache == []:
 			return None
 		for item in self.memory_cache:
-			items.append({self.item_dataset['item_name']:item.item_name, self.item_dataset['item_price']:item.item_price})
+			items.append(f"{self.item_dataset['item_name']}:{item.item_name} {self.item_dataset['item_price']}:{item.item_price}")
 			return items

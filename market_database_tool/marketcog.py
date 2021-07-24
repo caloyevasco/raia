@@ -24,22 +24,36 @@ class MarketCommands(commands.Cog):
 		if check == None:
 			await ctx.send(f"Hello there {ctx.author.mention} you cannot use any other commands because you are not yet in the game, type \"r/budgetme \" to get started.")
 			return
-		raia.cache_items()
+		raia.market_system.cache_items()
 		msg = ""
-		for key, value in raia.list_all_items():
-			msg+=f"{key}:{value}\n"
-		await ctx.send(msg)
+		for hasht in raia.market_system.list_all_items():
+			msg+=hasht
+		if msg == "":
+			await cts.send("Item not found.")
+		else:
+			await ctx.send(msg)
 
 
 	@commands.command(name='buy')
-	async def buy(self, ctx, item_name):
+	async def buy(self, ctx, item_name, qntty=1):
 		check = raia.player_system.get_player_by_id(ctx.author.id)
 		if check == None:
 			await ctx.send(f"Hello there {ctx.author.mention} you cannot use any other commands because you are not yet in the game, type \"r/budgetme \" to get started.")
 			return
+		elif qntty > 100:
+			await ctx.send("the max item quantity is 100.")
+			return
+
+
 		check_item = raia.market_system.get_item_by_name(str(item_name))
 		if check_item != None:
-			await ctx.send(f"{ctx.author.mention} bought {check_item.item_name} for {check_item.item_price}")
+			total = int(check_item.item_price) * int(qntty)
+			gold = raia.player_system.get_player_by_id(int(ctx.author.id)).player_gold
+			if gold >= total: 
+				raia.player_system.by_id_deduct_player_gold(int(ctx.author.id), total)
+				await ctx.send(f"{ctx.author.mention} bought {qntty} {check_item.item_name} for {total} gold.")
+			else:
+				await ctx.send(f"{ctx.author.mention} you don't have enough wealth.")
 		else:
 			return
 
