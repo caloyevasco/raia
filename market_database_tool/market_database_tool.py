@@ -34,12 +34,11 @@ class MarketBase(object):
 		else:
 			return None
 
-<<<<<<< HEAD
+
 	def get_all_items(self):
 		return self.SqliteDatabaseTool.exec_fetchall(f"SELECT * FROM {self.database_dataset['table_name']}")
 
-=======
->>>>>>> test-branch
+
 	def get_item_by_id(self, item_id_arg):
 		item = self.SqliteDatabaseTool.exec_fetchone(f"SELECT * FROM {self.database_dataset['table_name']} WHERE {self.item_dataset['item_id']}=={item_id_arg} ")
 		if item != None:
@@ -69,11 +68,6 @@ class MarketDatabaseTool(MarketBase):
 		self.SqliteDatabaseTool.exec(command_format)
 		return
 
-<<<<<<< HEAD
-	def list_items(self):
-		return self.get_all_items()
-=======
 	def list_all_items(self):
 		for item in self.get_all_items():
 			print(f"{item.item_name}")
->>>>>>> test-branch
