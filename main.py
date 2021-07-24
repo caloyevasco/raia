@@ -4,12 +4,12 @@ sys.path.append(os.path.abspath("."))
 from dotenv import load_dotenv
 from discord.ext import commands
 from webserver.webserver import keep_alive
-import run
+import raia
 load_dotenv()
 
 
-run.market_system.create_table(run.market_table)
-run.player_system.create_table(run.player_table)
+raia.market_system.create_table(raia.market_table)
+raia.player_system.create_table(raia.player_table)
 
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
