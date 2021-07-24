@@ -40,12 +40,39 @@ tests = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)"
 tests_no_zope = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins"]
 
 [[package]]
+name = "belfrywidgets"
+version = "1.0.3"
+description = "A collection of useful tkinter widgets."
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
+name = "certifi"
+version = "2021.5.30"
+description = "Python package for providing Mozilla's CA Bundle."
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "chardet"
 version = "4.0.0"
 description = "Universal encoding detector for Python 2 and 3"
 category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+
+[[package]]
+name = "charset-normalizer"
+version = "2.0.3"
+description = "The Real First Universal Charset Detector. Open, modern and actively maintained alternative to Chardet."
+category = "main"
+optional = false
+python-versions = ">=3.5.0"
+
+[package.extras]
+unicode_backport = ["unicodedata2"]
 
 [[package]]
 name = "click"
@@ -67,6 +94,31 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
+name = "comiccrawler"
+version = "2020.10.29"
+description = "An image crawler, including multiple modules and GUI."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+belfrywidgets = ">=1.0,<2.0"
+desktop3 = ">=0.5.3,<0.6.0"
+docopt = ">=0.6.2,<0.7.0"
+node-vm2 = ">=0.3.7,<0.4.0"
+pythreadworker = ">=0.9.0,<0.10.0"
+requests = ">=2.24,<3.0"
+safeprint = ">=0.2.0,<0.3.0"
+
+[[package]]
+name = "desktop3"
+version = "0.5.3"
+description = "Simple desktop integration for Python."
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "discord.py"
 version = "1.7.3"
 description = "A Python wrapper for the Discord API"
@@ -80,6 +132,14 @@ aiohttp = ">=3.6.0,<3.8.0"
 [package.extras]
 docs = ["sphinx (==3.0.3)", "sphinxcontrib-trio (==1.1.2)", "sphinxcontrib-websupport"]
 voice = ["PyNaCl (>=1.3.0,<1.5)"]
+
+[[package]]
+name = "docopt"
+version = "0.6.2"
+description = "Pythonic argument parser, that will make you smile"
+category = "main"
+optional = false
+python-versions = "*"
 
 [[package]]
 name = "flask"
@@ -146,6 +206,14 @@ optional = false
 python-versions = ">=3.6"
 
 [[package]]
+name = "node-vm2"
+version = "0.3.7"
+description = "A binding to Node.js + vm2, helps you execute JavaScript safely."
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "python-dotenv"
 version = "0.18.0"
 description = "Read key-value pairs from a .env file and set them as environment variables"
@@ -157,12 +225,62 @@ python-versions = "*"
 cli = ["click (>=5.0)"]
 
 [[package]]
+name = "pythreadworker"
+version = "0.9.0"
+description = "A threading library."
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
+name = "requests"
+version = "2.26.0"
+description = "Python HTTP for Humans."
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*"
+
+[package.dependencies]
+certifi = ">=2017.4.17"
+charset-normalizer = {version = ">=2.0.0,<2.1.0", markers = "python_version >= \"3\""}
+idna = {version = ">=2.5,<4", markers = "python_version >= \"3\""}
+urllib3 = ">=1.21.1,<1.27"
+
+[package.extras]
+socks = ["PySocks (>=1.5.6,!=1.5.7)", "win-inet-pton"]
+use_chardet_on_py3 = ["chardet (>=3.0.2,<5)"]
+
+[[package]]
+name = "safeprint"
+version = "0.2.0"
+description = "A printer suppressing UnicodeEncodeError"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+win-unicode-console = ">=0.4"
+
+[[package]]
 name = "typing-extensions"
 version = "3.10.0.0"
 description = "Backported and Experimental Type Hints for Python 3.5+"
 category = "main"
 optional = false
 python-versions = "*"
+
+[[package]]
+name = "urllib3"
+version = "1.26.6"
+description = "HTTP library with thread-safe connection pooling, file post, and more."
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <4"
+
+[package.extras]
+brotli = ["brotlipy (>=0.6.0)"]
+secure = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "certifi", "ipaddress"]
+socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 
 [[package]]
 name = "werkzeug"
@@ -174,6 +292,14 @@ python-versions = ">=3.6"
 
 [package.extras]
 watchdog = ["watchdog"]
+
+[[package]]
+name = "win-unicode-console"
+version = "0.5"
+description = "Enable Unicode input and display when running Python from Windows console."
+category = "main"
+optional = false
+python-versions = "*"
 
 [[package]]
 name = "yarl"
@@ -190,7 +316,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "c4aed8226632022c9e2cad290712b1e8dd04bbc5df97978c51bc60514cc83af8"
+content-hash = "0aa258a2bbaa529263b4488f40eabd342a2e31911c1eb89d3016de87e2ccf62f"
 
 [metadata.files]
 aiohttp = [
@@ -240,9 +366,21 @@ attrs = [
     {file = "attrs-21.2.0-py2.py3-none-any.whl", hash = "sha256:149e90d6d8ac20db7a955ad60cf0e6881a3f20d37096140088356da6c716b0b1"},
     {file = "attrs-21.2.0.tar.gz", hash = "sha256:ef6aaac3ca6cd92904cdd0d83f629a15f18053ec84e6432106f7a4d04ae4f5fb"},
 ]
+belfrywidgets = [
+    {file = "belfrywidgets-1.0.3-py2.py3-none-any.whl", hash = "sha256:1c2171f77a2ae8f7378810a8088eba6a9f91883cb742fd354912def2ad39751a"},
+    {file = "belfrywidgets-1.0.3.tar.gz", hash = "sha256:bced0b69d89012dee3437059395da2d6a1e59bd40a47f723dbdd90807b48be06"},
+]
+certifi = [
+    {file = "certifi-2021.5.30-py2.py3-none-any.whl", hash = "sha256:50b1e4f8446b06f41be7dd6338db18e0990601dce795c2b1686458aa7e8fa7d8"},
+    {file = "certifi-2021.5.30.tar.gz", hash = "sha256:2bbf76fd432960138b3ef6dda3dde0544f27cbf8546c458e60baf371917ba9ee"},
+]
 chardet = [
     {file = "chardet-4.0.0-py2.py3-none-any.whl", hash = "sha256:f864054d66fd9118f2e67044ac8981a54775ec5b67aed0441892edb553d21da5"},
     {file = "chardet-4.0.0.tar.gz", hash = "sha256:0d6f53a15db4120f2b08c94f11e7d93d2c911ee118b6b30a04ec3ee8310179fa"},
+]
+charset-normalizer = [
+    {file = "charset-normalizer-2.0.3.tar.gz", hash = "sha256:c46c3ace2d744cfbdebceaa3c19ae691f53ae621b39fd7570f59d14fb7f2fd12"},
+    {file = "charset_normalizer-2.0.3-py3-none-any.whl", hash = "sha256:88fce3fa5b1a84fdcb3f603d889f723d1dd89b26059d0123ca435570e848d5e1"},
 ]
 click = [
     {file = "click-8.0.1-py3-none-any.whl", hash = "sha256:fba402a4a47334742d782209a7c79bc448911afe1149d07bdabdf480b3e2f4b6"},
@@ -252,9 +390,20 @@ colorama = [
     {file = "colorama-0.4.4-py2.py3-none-any.whl", hash = "sha256:9f47eda37229f68eee03b24b9748937c7dc3868f906e8ba69fbcbdd3bc5dc3e2"},
     {file = "colorama-0.4.4.tar.gz", hash = "sha256:5941b2b48a20143d2267e95b1c2a7603ce057ee39fd88e7329b0c292aa16869b"},
 ]
+comiccrawler = [
+    {file = "comiccrawler-2020.10.29-py3-none-any.whl", hash = "sha256:0efc5f36481d1da0a964f711de3a2709655727217e03401cece827365d552820"},
+    {file = "comiccrawler-2020.10.29.tar.gz", hash = "sha256:6564c6d3dfac4f72b0214f00064aedcab3877cc6fc582008aafe355ad314118d"},
+]
+desktop3 = [
+    {file = "desktop3-0.5.3-py3-none-any.whl", hash = "sha256:e5ca2d4dc2b7afe1cb4b1054b2b2fe62c381625ae90926592c36992bdc5c4b8b"},
+    {file = "desktop3-0.5.3.tar.gz", hash = "sha256:a82a49352dac14faa77e31fef8b0773667a2ce83deafc44abc1484d19ea44f6b"},
+]
 "discord.py" = [
     {file = "discord.py-1.7.3-py3-none-any.whl", hash = "sha256:c6f64db136de0e18e090f6752ea68bdd4ab0a61b82dfe7acecefa22d6477bb0c"},
     {file = "discord.py-1.7.3.tar.gz", hash = "sha256:462cd0fe307aef8b29cbfa8dd613e548ae4b2cb581d46da9ac0d46fb6ea19408"},
+]
+docopt = [
+    {file = "docopt-0.6.2.tar.gz", hash = "sha256:49b3a825280bd66b3aa83585ef59c4a8c82f2c8a522dbe754a8bc8d08c85c491"},
 ]
 flask = [
     {file = "Flask-2.0.1-py3-none-any.whl", hash = "sha256:a6209ca15eb63fc9385f38e452704113d679511d9574d09b2cf9183ae7d20dc9"},
@@ -347,18 +496,41 @@ multidict = [
     {file = "multidict-5.1.0-cp39-cp39-win_amd64.whl", hash = "sha256:7df80d07818b385f3129180369079bd6934cf70469f99daaebfac89dca288359"},
     {file = "multidict-5.1.0.tar.gz", hash = "sha256:25b4e5f22d3a37ddf3effc0710ba692cfc792c2b9edfb9c05aefe823256e84d5"},
 ]
+node-vm2 = [
+    {file = "node_vm2-0.3.7-py3-none-any.whl", hash = "sha256:f27f9e118bb5ef2ba0505b2cc3dc0dcb814b906ae4407c7d6eef3ebf92bbe80b"},
+    {file = "node_vm2-0.3.7.tar.gz", hash = "sha256:53508e9eb4ee48fd3a8ae1ef44cc06c7f986371c3ab456ad3e1fa5c2ce091d18"},
+]
 python-dotenv = [
     {file = "python-dotenv-0.18.0.tar.gz", hash = "sha256:effaac3c1e58d89b3ccb4d04a40dc7ad6e0275fda25fd75ae9d323e2465e202d"},
     {file = "python_dotenv-0.18.0-py2.py3-none-any.whl", hash = "sha256:dd8fe852847f4fbfadabf6183ddd4c824a9651f02d51714fa075c95561959c7d"},
+]
+pythreadworker = [
+    {file = "pythreadworker-0.9.0-py3-none-any.whl", hash = "sha256:5330ea7b9d69cdde3ac5a7b9193e6681ca75fa3df6521b4e68528f7c7d7f8015"},
+    {file = "pythreadworker-0.9.0.tar.gz", hash = "sha256:507674fb96d52480106c514f100501aafe2ba2b42f8a04bd27e05687700be84d"},
+]
+requests = [
+    {file = "requests-2.26.0-py2.py3-none-any.whl", hash = "sha256:6c1246513ecd5ecd4528a0906f910e8f0f9c6b8ec72030dc9fd154dc1a6efd24"},
+    {file = "requests-2.26.0.tar.gz", hash = "sha256:b8aa58f8cf793ffd8782d3d8cb19e66ef36f7aba4353eec859e74678b01b07a7"},
+]
+safeprint = [
+    {file = "safeprint-0.2.0-py3-none-any.whl", hash = "sha256:381fd4fb8808cc13df085c10c2b8b64dc549b784164aa6818d67f81e830b8e7b"},
+    {file = "safeprint-0.2.0.tar.gz", hash = "sha256:39f00f7761086efbc65474f8ccaad1bdcfdcf13245ce1a13a636118d9ae9b44e"},
 ]
 typing-extensions = [
     {file = "typing_extensions-3.10.0.0-py2-none-any.whl", hash = "sha256:0ac0f89795dd19de6b97debb0c6af1c70987fd80a2d62d1958f7e56fcc31b497"},
     {file = "typing_extensions-3.10.0.0-py3-none-any.whl", hash = "sha256:779383f6086d90c99ae41cf0ff39aac8a7937a9283ce0a414e5dd782f4c94a84"},
     {file = "typing_extensions-3.10.0.0.tar.gz", hash = "sha256:50b6f157849174217d0656f99dc82fe932884fb250826c18350e159ec6cdf342"},
 ]
+urllib3 = [
+    {file = "urllib3-1.26.6-py2.py3-none-any.whl", hash = "sha256:39fb8672126159acb139a7718dd10806104dec1e2f0f6c88aab05d17df10c8d4"},
+    {file = "urllib3-1.26.6.tar.gz", hash = "sha256:f57b4c16c62fa2760b7e3d97c35b255512fb6b59a259730f36ba32ce9f8e342f"},
+]
 werkzeug = [
     {file = "Werkzeug-2.0.1-py3-none-any.whl", hash = "sha256:6c1ec500dcdba0baa27600f6a22f6333d8b662d22027ff9f6202e3367413caa8"},
     {file = "Werkzeug-2.0.1.tar.gz", hash = "sha256:1de1db30d010ff1af14a009224ec49ab2329ad2cde454c8a708130642d579c42"},
+]
+win-unicode-console = [
+    {file = "win_unicode_console-0.5.zip", hash = "sha256:d4142d4d56d46f449d6f00536a73625a871cba040f0bc1a2e305a04578f07d1e"},
 ]
 yarl = [
     {file = "yarl-1.6.3-cp36-cp36m-macosx_10_14_x86_64.whl", hash = "sha256:0355a701b3998dcd832d0dc47cc5dedf3874f966ac7f870e0f3a6788d802d434"},

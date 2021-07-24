@@ -9,6 +9,7 @@ python = "^3.8"
 "discord.py" = "^1.7.3"
 python-dotenv = "^0.18.0"
 Flask = "^2.0.1"
+comiccrawler = "^2020.10.29"
 
 [tool.poetry.dev-dependencies]
 

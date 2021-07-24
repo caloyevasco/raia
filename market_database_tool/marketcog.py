@@ -20,6 +20,7 @@ class MarketCommands(commands.Cog):
 
 	@commands.command(name='shop')
 	async def shop(self, ctx):
+		check = raia.player_system.get_player_by_id(ctx.author.id)
 		if check == None:
 			await ctx.send(f"Hello there {ctx.author.mention} you cannot use any other commands because you are not yet in the game, type \"r/budgetme \" to get started.")
 			return
