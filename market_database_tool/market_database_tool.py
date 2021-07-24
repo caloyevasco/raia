@@ -35,6 +35,7 @@ class MarketBase(object):
 			return None
 
 
+
 	def get_item_by_id(self, item_id_arg):
 		item = self.SqliteDatabaseTool.exec_fetchone(f"SELECT * FROM {self.database_dataset['table_name']} WHERE {self.item_dataset['item_id']}=={item_id_arg} ")
 		if item != None:
