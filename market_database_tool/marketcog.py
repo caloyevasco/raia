@@ -18,7 +18,7 @@ class MarketCommands(commands.Cog):
 
 	@commands.command(name='shop')
 	async def shop(self, ctx):
-		pass
+		
 
 def setup(bot):
 	bot.add_cog(MarketCommands(bot))
