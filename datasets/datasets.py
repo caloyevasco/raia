@@ -1,7 +1,14 @@
 BASE_DATASET = {
-
 				'name':'name',
 				'id' :'id',
+				'iron_pieces':'iron_pcs',
+				'tin_pieces':'tin_pcs',
+				'copper_pieces':'copper_pcs',
+				'bronze_pieces':'bronze_pcs',
+				'silver_pieces':'silver_pcs',
+				'gold_pieces':'gold_pcs',
+				'mithril_pieces':'mithril_pcs',
+				'description':'desc'			
 }
 
 

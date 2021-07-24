@@ -23,6 +23,8 @@ class MarketCommands(commands.Cog):
 			await ctx.send(f"Hello there {ctx.author.mention} you cannot use any other commands because you are not yet in the game, type \"r/budgetme \" to get started.")
 			return
 		
+		await ctx.send(f"{raia.market_system.list_all_items()}")
+		
 
 def setup(bot):
 	bot.add_cog(MarketCommands(bot))
