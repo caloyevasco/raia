@@ -1,10 +1,4 @@
 import discord
-import sys, os
-from discord.ext import commands
-from database_tools.databasetool import DataBaseTool as DBT
-
-dbt = DBT("users.db")
-
 
 class Startup(commands.Cog):
 

@@ -27,11 +27,13 @@ class MarketBase(object):
 
 
 	def get_item_by_name(self, item_name_arg):
-		if self.get_item_by_id(item_id_arg) != None:
-			item_id, item_name, item_price = self.SqliteDatabaseTool.exec_fetchone(f"SELECT * FROM {self.database_dataset['table_name']} WHERE {self.item_dataset['item_name']}=={self.stringtools.text(item_name_arg)} ")
+		item = self.SqliteDatabaseTool.exec_fetchone(f"SELECT * FROM {self.database_dataset['table_name']} WHERE {self.item_dataset['item_name']}=={self.stringtools.text(item_name_arg)} ")
+		if item != None:
+			item_id, item_name, item_price = item
 			return Item(item_id, item_name, item_price)
 		else:
 			return None
+
 
 
 	def get_item_by_id(self, item_id_arg):
