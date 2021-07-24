@@ -6,6 +6,7 @@ class MarketCommands(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
 
+
 	@commands.command(name='checkitem')
 	async def checkitem(self, ctx, item_name_arg):
 		check = run.player_system.get_player_by_id(ctx.author.id)
