@@ -1,3 +1,4 @@
+from stringtools import stringtools
 class ValueBase(object):
 
 
