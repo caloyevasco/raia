@@ -58,5 +58,18 @@ class MarketCommands(commands.Cog):
 			return
 
 
+	@commands.command(name='sell')
+	async def sell(self, ctx, item_name, qntty=1):
+		check = raia.player_system.get_player_by_id(ctx.author.id)
+		if check == None:
+			await ctx.send(f"Hello there {ctx.author.mention} you cannot use any other commands because you are not yet in the game, type \"r/budgetme \" to get started.")
+			return
+		elif qntty < 0:
+			await ctx.send("cannot sell at given amount.")
+			return
+		
+		""""Item selling here"""
+
+
 def setup(bot):
 	bot.add_cog(MarketCommands(bot))
