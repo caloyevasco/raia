@@ -1,6 +1,4 @@
 import discord
-import sys, os
-sys.path.append(os.path.abspath("."))
 from dotenv import load_dotenv
 from discord.ext import commands
 from webserver import keep_alive
@@ -14,6 +12,6 @@ bot = commands.Bot(command_prefix='r/')
 
 bot.load_extension("cogs.basic")
 
-if __name__ == "__main__":
+def run():
 	keep_alive()
 	bot.run(BOT_TOKEN)
