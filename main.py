@@ -3,13 +3,8 @@ import sys, os
 sys.path.append(os.path.abspath("."))
 from dotenv import load_dotenv
 from discord.ext import commands
-from webserver.webserver import keep_alive
-import raia
+from webserver import keep_alive
 load_dotenv()
-
-
-raia.market_system.create_table(raia.market_table)
-raia.player_system.create_table(raia.player_table)
 
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
@@ -17,10 +12,13 @@ BOT_TOKEN = os.environ.get("BOT_TOKEN")
 
 bot = commands.Bot(command_prefix='r/')
 
-
-bot.load_extension('market_database_tool.marketcog')
-bot.load_extension('player_database_tool.playercog')
-
+@bot.event
+async def on_message(message):
+	if message.author == bot.user:
+		return
+	
+	else:
+		await message.channel.send(f"called by, {message.author.mention}.")
 
 if __name__ == "__main__":
 	keep_alive()
