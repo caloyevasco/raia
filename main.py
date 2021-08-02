@@ -12,13 +12,7 @@ BOT_TOKEN = os.environ.get("BOT_TOKEN")
 
 bot = commands.Bot(command_prefix='r/')
 
-@bot.event
-async def on_message(message):
-	if message.author == bot.user:
-		return
-	
-	else:
-		await message.channel.send(f"called by, {message.author.mention}.")
+bot.load_extension("cogs.basic")
 
 if __name__ == "__main__":
 	keep_alive()
