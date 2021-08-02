@@ -1,10 +1,10 @@
 import discord
+import os
 from dotenv import load_dotenv
 from discord.ext import commands
-from webserver import keep_alive
+from webserver.webserver import keep_alive
+
 load_dotenv()
-
-
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 
 
