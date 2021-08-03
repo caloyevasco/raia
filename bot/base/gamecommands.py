@@ -5,15 +5,13 @@ class Player(object):
 		pass
 
 
-
 class MemberCommands(object):
 
 
-	def __init__(self, bot, text_channel_name):
-		self.bot = bot
+	def __init__(self, text_channel_name):
 		self.text_channel_name = text_channel_name
 
 
 	def take(self, context):
 		if context.channel.name = self.text_channel_name:
-			return False:
+			return "yes?"

@@ -2,7 +2,7 @@ from discord.ext import commands
 import discord
 from databasetool.databasetool import DatabaseTool
 
-class (commands.Cog):
+class Basic_Player_Commands(commands.Cog):
 
 
 	def __init__(self, bot):
