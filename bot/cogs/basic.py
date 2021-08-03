@@ -8,17 +8,16 @@ class Basic_Player_Commands(commands.Cog):
 		self.bot = bot
 
 
-	@commands.command(name="truckkun")
+	@commands.command(name="join")
 	async def truckkun(self,ctx):
-		discord_id = str(ctx.author.id)
-		discord_name = str(ctx.author.name)
-		database = DatabaseTool(discord_id, "bot/database.json")
-		if database.create({discord_id:{"player_name":discord_name}}):
-			await ctx.send(f"\"`A Light suck you in the air! You've been Transmigrated in another World! Welcome to Raia {ctx.author.mention}!`\"")
-		else:
-			await ctx.send(f"You have been already Transmigrated to Raia {ctx.author.mention}.")
-	
-	
+		if ctx.channel.name == "raia-main":
+			discord_id = str(ctx.author.id)
+			discord_name = str(ctx.author.name)
+			database = DatabaseTool(discord_id, "bot/database.json")
+			if database.create({discord_id:{"player_name":discord_name}}):
+				await ctx.send(f"\"`A Light suck you in the air! You've been Transmigrated in another World! Welcome to Raia, {ctx.author.mention}!`\"")
+			else:
+				await ctx.send(f"You have been already Transmigrated to Raia {ctx.author.mention}.")
 
 
 def setup(bot):
