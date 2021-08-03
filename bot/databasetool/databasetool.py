@@ -21,7 +21,7 @@ class DatabaseTool():
 		create(self) - creates a user in the database if the user does not yet exist inside the database.
 	"""
 
-	def __init__(self, playerid, database):
+	def __init__(self, database):
 		self.database_file = database
 		self.database_object = load_database(database)
 

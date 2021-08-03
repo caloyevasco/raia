@@ -1,6 +1,7 @@
+import discord
 from discord.ext import commands
-from databasetool.databasetool import DatabaseTool
 import main
+
 
 class Basic_Player_Commands(commands.Cog):
 
@@ -9,16 +10,21 @@ class Basic_Player_Commands(commands.Cog):
 		self.bot = bot
 
 
+	@commands.Cog.listener()
+	async def on_ready(self):
+		bots_channel = "raia-main"
+		for guild in self.bot.guilds:
+			if bots_channel not in [channel.name for channel in guild.text_channels]:
+				await guild.create_text_channel(bots_channel)
+
+
 	@commands.command(name="join")
 	async def join(self,ctx):
-		if ctx.channel.name == "raia-main":
-			discord_id = str(ctx.author.id)
-			discord_name = str(ctx.author.name)
-			database = DatabaseTool(discord_id, "bot/database.json")
-			if database.create({discord_id:{"player_name":discord_name}}):
-				await ctx.send(f"\"`A Light suck you in the air! You've been Transmigrated in another World! Welcome to Raia, {ctx.author.mention}!`\"")
-			else:
-				await ctx.send(f"You have been already Transmigrated to Raia {ctx.author.mention}.")
+		joins = main.player_commands.new_player(ctx)
+		if joins:
+			await ctx.send(f"\"`A Light suck you in the air! You've been Transmigrated in another World! Welcome to Raia, {context.author.mention}!`")
+		else:
+			await ctx.send(f"You have been already Transmigrated to Raia {context.author.mention}.")
 
 
 	@commands.command(name="test")

@@ -1,11 +1,7 @@
-class Player(object):
-
-	def __init__(self, UserObj):
-		""" This initializes the discord """
-		pass
+from main import db_tool
 
 
-class MemberCommands(object):
+class MemberCommands(Test):
 
 
 	def __init__(self, text_channel_name):
@@ -14,4 +10,21 @@ class MemberCommands(object):
 
 	def take(self, context):
 		if context.channel.name = self.text_channel_name:
-			return "yes?"
+			return True
+		else:
+			return False
+
+
+class PlayerCommands(MemberCommands):
+
+
+	def __init__(self, text_channel_name):
+		super().__init__(text_channel_name)
+
+
+	def new_player(self, context):
+		if self.take(context):
+			if db_tool.create(context):
+				return False
+			else:
+				return True
