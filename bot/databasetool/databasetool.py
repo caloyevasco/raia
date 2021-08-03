@@ -2,6 +2,7 @@ import json
 
 
 def load_database(database):
+	""" Opens the database """
 	with open(database) as file:
 		return json.load(file)
 
@@ -39,7 +40,7 @@ class DatabaseTool():
 
 	def create(self, player_dict):
 		""" creates a player inside the databse is the player is not in the database yet. """
-		if self.get():
+		if self.get(list(player_dict.keys())[0]):
 			return False
 		else:
 			cache_db = self.database_object
