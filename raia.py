@@ -68,7 +68,10 @@ if __name__ == "__main__":
 					player_system.by_id_deduct_player_gold(player.player_id , item.item_price)
 					print("trans fin.")
 
-	market_system.list_all_items()
+	x = ""
+
+	x+="hello"
+	print(x)
 
 
 	print(player_system.get_player_by_id(player.player_id).__dict__)

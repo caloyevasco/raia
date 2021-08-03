@@ -62,12 +62,22 @@ class MarketDatabaseTool(MarketBase):
 	def __init__(self, db_dir, ValueBase, SqliteDatabaseTool, item_dataset, database_dataset, stringtools, base_dataset):
 		self.SqliteDatabaseTool = SqliteDatabaseTool(db_dir)
 		super().__init__(ValueBase, self.SqliteDatabaseTool, item_dataset, database_dataset, stringtools, base_dataset)
-
+		self.item_dataset = item_dataset
+		self.memory_cache = []
 
 	def create_table(self, command_format):
 		self.SqliteDatabaseTool.exec(command_format)
 		return
 
-	def list_all_items(self):
+	def cache_items(self):
 		for item in self.get_all_items():
-			print(f"{item.item_name}")
+			self.memory_cache.append(item)
+
+
+	def list_all_items(self):
+		items = []
+		if self.memory_cache == []:
+			return None
+		for item in self.memory_cache:
+			items.append(f"{self.item_dataset['item_name']}:{item.item_name} {self.item_dataset['item_price']}:{item.item_price}")
+			return items

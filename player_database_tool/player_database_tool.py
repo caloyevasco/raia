@@ -74,6 +74,9 @@ class PlayerDatabaseBase(object):
 		self.data_base_conn.exec_commit(f"UPDATE {self.database_dataset['table_name']} SET {self.database_dataset['player_name']} = {new_playername_arg} WHERE {self.player_dataset['player_id']}=={player_id_arg}")
 		return
 
+	def by_id_get_player_inventory(self, player_id_arg, /):
+		pass
+		
 
 class PlayerDatabaseTool(PlayerDatabaseBase):
 
