@@ -35,7 +35,7 @@ class DatabaseTool():
 		if record.get(str(self.userid)):
 			return record[str(self.userid)]
 		else:
-			return
+			return False
 
 
 	def create(self, player_dict):
