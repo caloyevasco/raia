@@ -31,20 +31,24 @@ class DatabaseTool():
 		#loads the self.database_object -> dict
 		record = self.database_object
 		self.userid = str(playerid)
-
+		#returns a dict if it funds the user data
 		if record.get(str(self.userid)):
 			return record[str(self.userid)]
 		else:
+		#returns false if the data is not found
 			return False
 
 
 	def create(self, player_dict):
 		""" creates a player inside the databse is the player is not in the database yet. """
+
 		if self.get(list(player_dict.keys())[0]):
+			#returns false if the data is found
 			return False
 		else:
 			cache_db = self.database_object
 			cache_db[self.userid] = list(player_dict.values())[0]
 			with open(self.database_file, "w") as db_f:
 				json.dump(cache_db, db_f, indent="\t\t")
+			#returns true if the data is created
 			return True

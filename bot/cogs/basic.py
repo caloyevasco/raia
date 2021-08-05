@@ -53,11 +53,7 @@ class Basic_Player_Commands(commands.Cog):
 
 	@commands.command(name="join")
 	async def join(self,ctx):
-		joins = main.player_commands.new_player(ctx)
-		if joins == True:
-			await ctx.send(f"A Light suck you in the air! You've been Transmigrated in another World! Welcome to Raia, {ctx.author.mention}!")
-		elif joins == False:
-			await ctx.send(f"You have been already Transmigrated to Raia {ctx.author.mention}!")
+		await ctx.send(main.player_commands.new_player(ctx))
 
 
 def setup(bot):

@@ -19,26 +19,5 @@
 								"item_description": "make us multiply!"
 						}
 				]
-		},
-		"510643723210588170": {
-				"player_information": {
-						"player_name": "AsurA",
-						"player_id": 510643723210588170
-				},
-				"player_stats": {
-						"player_class": "None",
-						"player_race": "None",
-						"player_health": 20,
-						"player_attack": 1,
-						"player_defense": 1
-				},
-				"player_inventory": [
-						{
-								"item_name": "iron coins",
-								"item_type": "currency",
-								"item_amount": 50,
-								"item_description": "make us multiply!"
-						}
-				]
 		}
 }

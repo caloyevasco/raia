@@ -95,11 +95,10 @@ class Check(object):
 	def check_player(self, ctx):
 		def _outer_callable_(func):
 			def _inner_callable_(*args):
-				player_dict = PlayerDict(ctx)
-				if ctx.author.id in self.db_tool.create(player_dict.create()):
+				if self.db_tool.get(ctx.author.id):
 					return False
 				else:
-					return func(arg)
+					return func(args)
 			return _inner_callable_
 		return _outer_callable_
 
@@ -108,7 +107,7 @@ class Check(object):
 		def _outer_callable_(func):
 			def _inner_callable_(*args):
 				if ctx.channel.name == self.text_channel_name:
-					return func(arg)
+					return func(args)
 				else:
 					return False
 			return _inner_callable_
@@ -126,31 +125,30 @@ class PlayerCommands(Check, MemberCommands):
 
 
 	def __init__(self, text_channel_name):
-		MemberCommands.__init__(text_channel_name)
-		Check.__init__(text_channel_name)
+		Check.__init__(self, text_channel_name)
 		self.db_tool = DatabaseTool('bot/database.json')
 
 
-	#create a new player
 	def new_player(self, context):
+		""" Creates a new player in the database """
 		@Check.check_channel(self, context)
 		@Check.check_player(self, context)
-		def new_player_func():
+		def new_player_func(*args):
 			#creates player
 			new_player_var = PlayerDict(context)
-			self.db_tool.create(new_player_var)
-			return f"A Light suck you in the air! You've been Transmigrated in another World! Welcome to Raia, {ctx.author.mention}!"
+			self.db_tool.create(new_player_var.create())
+			return f"A Light suck you in the air! You've been Transmigrated in another World! Welcome to Raia, {context.author.mention}!"
 		checked = new_player_func()
-		if checked == False:
-			return f"You have been already Transmigrated to Raia {ctx.author.mention}!"
-		else:
+		if checked:
 			return checked
+		else:
+			return f"You have been already Transmigrated to Raia {context.author.mention}!"
 
 
 	def checks_stats(self, context):
 		@Check.check_channel(context)
 		@Check.check_player(context)
-		def checks_stats_func():
+		def checks_stats_func(*args):
 			player = self.db_tool.get(context.author.id)
 			if player != False:
 				player_dict = PlayerDict()
@@ -164,7 +162,7 @@ class PlayerCommands(Check, MemberCommands):
 	def checks_inventory(self, context):
 		@Check.check_channel(context)
 		@Check.check_player(context)
-		def checks_inventory_func():
+		def checks_inventory_func(*args):
 			player = self.db_tool.get(context.author.id)
 			if player != False:
 				player_dict = PlayerDict()
