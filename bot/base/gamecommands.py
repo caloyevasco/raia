@@ -1,8 +1,8 @@
 from databasetool.databasetool import DatabaseTool
 import discord
-import os
 
 
+#Item dictionary
 class ItemDict(object):
 
 
@@ -33,7 +33,6 @@ class ItemDict(object):
 			pass
 
 
-
 class PlayerDict(object):
 
 
@@ -41,7 +40,7 @@ class PlayerDict(object):
 		self.context = context
 
 
-	def parse(self) -> dict:
+	def create(self) -> dict:
 		starter_item = ItemDict()
 		coins = starter_item.create_item("iron coins", "currency", 50, "make us multiply!")
 		return	{str(self.context.author.id):
@@ -65,7 +64,7 @@ class PlayerDict(object):
 				}
 	
 
-	def create(self, player_dict) -> object:
+	def parse(self, player_dict) -> object:
 		self.player_name = player_dict["player_information"]["player_name"]
 		self.player_id = player_dict["player_information"]["player_id"]
 		self.player_class = player_dict["player_stats"]["player_class"]
@@ -86,6 +85,35 @@ class PlayerDict(object):
 		self.get_inventory.append(item_dict)
 
 
+class Check(object):
+
+	def __init__(self, text_channel_name):
+		self.text_channel_name = text_channel_name
+		self.db_tool = DatabaseTool('bot/database.json')
+
+
+	def check_player(self, ctx):
+		def _outer_callable_(func):
+			def _inner_callable_(*args):
+				player_dict = PlayerDict(ctx)
+				if ctx.author.id in self.db_tool.create(player_dict.create()):
+					return False
+				else:
+					return func(arg)
+			return _inner_callable_
+		return _outer_callable_
+
+
+	def check_channel(self, ctx):
+		def _outer_callable_(func):
+			def _inner_callable_(*args):
+				if ctx.channel.name == self.text_channel_name:
+					return func(arg)
+				else:
+					return False
+			return _inner_callable_
+		return _outer_callable_
+	
 
 class MemberCommands(object):
 
@@ -94,32 +122,35 @@ class MemberCommands(object):
 		self.text_channel_name = text_channel_name
 
 
-	def take(self, context):
-		if context.channel.name == self.text_channel_name:
-			return True
-		else:
-			return False
-
-
-class PlayerCommands(MemberCommands):
+class PlayerCommands(Check, MemberCommands):
 
 
 	def __init__(self, text_channel_name):
-		super().__init__(text_channel_name)
+		MemberCommands.__init__(text_channel_name)
+		Check.__init__(text_channel_name)
 		self.db_tool = DatabaseTool('bot/database.json')
 
 
+	#create a new player
 	def new_player(self, context):
-		if self.take(context):
-			player_dict = PlayerDict(context)
-			if self.db_tool.create(player_dict.parse()):
-				return True
-			else:
-				return False
+		@Check.check_channel(self, context)
+		@Check.check_player(self, context)
+		def new_player_func():
+			#creates player
+			new_player_var = PlayerDict(context)
+			self.db_tool.create(new_player_var)
+			return f"A Light suck you in the air! You've been Transmigrated in another World! Welcome to Raia, {ctx.author.mention}!"
+		checked = new_player_func()
+		if checked == False:
+			return f"You have been already Transmigrated to Raia {ctx.author.mention}!"
+		else:
+			return checked
 
 
 	def checks_stats(self, context):
-		if self.take(context):
+		@Check.check_channel(context)
+		@Check.check_player(context)
+		def checks_stats_func():
 			player = self.db_tool.get(context.author.id)
 			if player != False:
 				player_dict = PlayerDict()
@@ -127,10 +158,13 @@ class PlayerCommands(MemberCommands):
 				return player_dict
 			else:
 				return False
+		checks_stats_func()
 
 
 	def checks_inventory(self, context):
-		if self.take(context):
+		@Check.check_channel(context)
+		@Check.check_player(context)
+		def checks_inventory_func():
 			player = self.db_tool.get(context.author.id)
 			if player != False:
 				player_dict = PlayerDict()
@@ -143,3 +177,4 @@ class PlayerCommands(MemberCommands):
 				return embed
 			else:
 				return False
+		checks_stats_func()

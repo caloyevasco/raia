@@ -49,7 +49,6 @@ class Basic_Player_Commands(commands.Cog):
 			await ctx.send(embed=inv)
 		else:
 			await ctx.send(f"{ctx.author.mention} you must join the game by typing `r/join` before you can use any other commands that this bot provides.")
-		
 
 
 	@commands.command(name="join")
